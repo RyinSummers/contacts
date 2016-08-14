@@ -141,28 +141,7 @@ public  class FirstFragment extends android.support.v4.app.Fragment {
 //            } else {
 //                sortKey.setVisibility(View.GONE);
 //            }
-            if(position%2==0)
-                sortKey.setVisibility(View.VISIBLE);
             return super.getView(position,convertView,parent);
-//            Contact contact = getItem(position);
-//            LinearLayout layout = null;
-//            if (convertView == null) {
-//                layout = (LinearLayout) LayoutInflater.from(getContext()).inflate(resource, null);
-//            } else {
-//                layout = (LinearLayout) convertView;
-//            }
-//            TextView name = (TextView) layout.findViewById(R.id.name);
-//            LinearLayout sortKeyLayout = (LinearLayout) layout.findViewById(R.id.sort_key_layout);
-//            TextView sortKey = (TextView) layout.findViewById(R.id.sort_key);
-//            name.setText(contact.getName());
-//            int section = mIndexer.getSectionForPosition(position);
-//            if (position == mIndexer.getPositionForSection(section)) {
-//                sortKey.setText(contact.getSortKey());
-//                sortKeyLayout.setVisibility(View.VISIBLE);
-//            } else {
-//                sortKeyLayout.setVisibility(View.GONE);
-//            }
-//            return layout;
         }
     }
 }
