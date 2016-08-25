@@ -7,6 +7,7 @@
         android:id="@+id/alphabet_title_frag1"
         android:layout_width="match_parent"
         android:layout_height="12dp"
+        android:textSize="8sp"
         android:background="#999999"
         android:visibility="gone"/>
 
