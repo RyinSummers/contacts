@@ -1,5 +1,6 @@
 package yaoyaoandus.contacts;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -85,8 +87,18 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_search) {
             return true;
         }
+        else if (id == R.id.action_addnew)
+        {
+            startCardInfoActivity();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void startCardInfoActivity()
+    {
+        startActivity(new Intent(new Intent(MainActivity.this,CardInfoActivity.class)));
     }
 
 //    /**
@@ -174,4 +186,5 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
 }
