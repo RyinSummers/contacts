@@ -32,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+    public static final String host="";
+
+    public static boolean haslogin=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +69,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        if(haslogin==false)
+        {
+            startActivity(new Intent(new Intent(MainActivity.this,LoginActivity.class)));
+            finish();
+        }
+        else
+        //读取网络上的更新信息，存储到数据库里
+        {
+
+        }
+
     }
 
 
@@ -89,21 +104,38 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (id == R.id.action_addnew)
         {
-            startCardEditActivity();
+            startCardEditActivity("","");
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void startCardEditActivity()
+    public void startCardEditActivity(String name,String number)
     {
-        startActivity(new Intent(new Intent(MainActivity.this,CardEditActivity.class)));
+        Intent intent=new Intent(MainActivity.this,CardInfoActivity.class);
+        intent.putExtra("name",name);
+        intent.putExtra("number",number);
+        startActivity(intent);
+    }
+
+    public void startCardInfoActivity(String name,String number)
+    {
+        Intent intent=new Intent(MainActivity.this,CardInfoActivity.class);
+        intent.putExtra("name",name);
+        intent.putExtra("number",number);
+        startActivity(intent);
     }
 
     public void startAdd_group()
     {
-        startActivity(new Intent(new Intent(MainActivity.this,Add_group.class)));
+        startActivity(new Intent(MainActivity.this,Add_group.class));
+    }
+
+    public DatabaseUtils getdatabase()
+    {
+        DatabaseUtils dbhelp=new DatabaseUtils(MainActivity.this,"myuser.db",1);
+        return dbhelp;
     }
 
 //    /**

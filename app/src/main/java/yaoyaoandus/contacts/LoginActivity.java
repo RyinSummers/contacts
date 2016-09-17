@@ -23,20 +23,26 @@ import java.util.HashMap;
 /**
  * Created by lenovo on 2016/8/6.
  */
-public class LoginActivity extends Activity{
-       TextView textFetchPassWord=null,textRegister=null;//找回密码、注册
-       Button loginButton=null;//登陆
-       ImageButton listIndicatorButton=null,deleteButtonOfEdit=null;//list的下拉框、list的删除框
-       ImageView currentUserImage=null;//当前用户头像
-       ListView loginList=null;//登陆账号列表
-       EditText login_num_edit=null,login_password_edit=null;
-       private static boolean isVisible=false;     //ListView是否可见
-       private static boolean isIndicatorUp=false;  //指示器是否向上
+public class LoginActivity extends Activity
+{
 
-       public static int currentSelectedPosition=-1;   //当前List中账号数目，没有用-1表示
-       String[] from={"userPhoto","user_login_num","deleteButton"};
-       int[] to={R.id.login_userPhoto,R.id.login_user,R.id.login_deleteButton};
-       ArrayList<HashMap<String,Object>> list=null;
+    TextView textFetchPassWord=null,textRegister=null;//找回密码、注册
+    Button loginButton=null;//登陆
+    ImageButton listIndicatorButton=null,deleteButtonOfEdit=null;//list的下拉框、list的删除框
+    ImageView currentUserImage=null;//当前用户头像
+    ListView loginList=null;//登陆账号列表
+    EditText login_num_edit=null,login_password_edit=null;
+    private static boolean isVisible=false;     //ListView是否可见
+    private static boolean isIndicatorUp=false;  //指示器是否向上
+
+    public static int currentSelectedPosition=-1;   //当前List中账号数目，没有用-1表示
+    String[] from={"userPhoto","user_login_num","deleteButton"};
+    int[] to={R.id.login_userPhoto,R.id.login_user,R.id.login_deleteButton};
+    ArrayList<HashMap<String,Object>> list=null;
+
+    final int LOGIN=0;
+    final int REGIST=1;
+    int state=LOGIN;
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -86,12 +92,10 @@ public class LoginActivity extends Activity{
             login_num_edit.setText("");
         }
         else {
-
             currentUserImage.setImageResource((Integer)list.get(currentSelectedPosition).get(from[0]));//获取头像
             login_num_edit.setText((String)list.get(currentSelectedPosition).get(from[1]));//获取账号
         }
         //这儿登陆，有个MyLoginListAdapter类
-
           MyLoginListAdapter adapter=new MyLoginListAdapter(this,list,R.layout.login_list_item_layout,from,to);
           loginList.setAdapter(adapter);
           loginList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -129,14 +133,41 @@ public class LoginActivity extends Activity{
         });
 
 
-
-
-        //暂时把loginbutton啥都不判断，直接跳到mainactivity
         loginButton=(Button)findViewById(R.id.LoginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                if(state==REGIST)
+                {
+//                    HttpUtils.doPost(MainActivity.host+"/users/add",
+//                            "{" + "\"email\": \""+login_num_edit.getText()+"\"," +
+//                            "\"password\": \"\""+login_password_edit.getText()+"\"\"," +
+//                            "\"name\": \"KRfsOjGh\"," +
+//                            "\"nicename\": \"KRfsOjGh\"," +
+//                            "\"gender\": \"male\"," +
+//                            "\"picture\": \"NULL\"," +
+//                            "\"phone\": 1471228137" +
+//                            "}");
+                    state=LOGIN;
+                }
+                if(state==LOGIN)
+                {
+//                    String loginresult=HttpUtils.doPost(MainActivity.host+"/users/login",
+//                            "{\"email\": \"\""+login_num_edit.getText()
+//                                    +"\"\",\""+login_password_edit.getText()+"\": \"tsing\",}");
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    MainActivity.haslogin=true;
+                    finish();
+                }
+            }
+        });
+
+        textRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginButton.setText("注册");
+                state=REGIST;
+                textRegister.setVisibility(View.GONE);
             }
         });
 

@@ -6,9 +6,7 @@ package yaoyaoandus.contacts;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,13 +46,15 @@ public  class FirstFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v)
             {
-                ((MainActivity)getActivity()).startCardEditActivity();
+                ((MainActivity)getActivity()).startCardEditActivity("","");
             }
         });
 
         listItems = new ArrayList<Map<String, Object>>();
         Map<String, Object> temp1 = new HashMap<String, Object>();
 
+        /*
+        读取手机联系人
         Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
 
         //定义一个cursor游标，逐行查找数据库，数据库里有一个name与首字母的对应关系sort_key
@@ -72,18 +72,35 @@ public  class FirstFragment extends android.support.v4.app.Fragment {
                 temp1 = new HashMap<String, Object>();
             } while (cursor.moveToNext());
         }
+        */
+
+        DatabaseUtils databaseUtils=((MainActivity)getActivity()).getdatabase();
+        Cursor cursor=((MainActivity)getActivity()).getdatabase().getReadableDatabase().rawQuery("select user_name,content from cards_received",null);
+        if (cursor.moveToFirst()) {
+            do {
+                String name = cursor.getString(cursor.getColumnIndex("user_name"));
+                String number = cursor.getString(cursor.getColumnIndex("content"));
+                //String sortkey = cursor.getString(0);
+                temp1.put("header",R.drawable.usermain);
+                temp1.put("name",name);
+                temp1.put("number", number);
+                listItems.add(temp1);
+                temp1 = new HashMap<String, Object>();
+            } while (cursor.moveToNext());
+        }
+
         simpleAdapter=new IndexedSimpleAdapter(getActivity(),listItems,R.layout.frag1_list_item,
                 new String[]{"header","name","number"},
                 new int[]{R.id.image_icon_frag1,R.id.name_frag1,R.id.number_frag1});
-//        alphabetIndexer = new AlphabetIndexer(cursor, cursor.getColumnIndex("sort_key"), "#ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         listView.setAdapter(simpleAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((MainActivity)getActivity()).startCardEditActivity();
+                String currentname=(String)listItems.get(position).get("name");
+                String currentnumber=(String)listItems.get(position).get("number");
+                ((MainActivity)getActivity()).startCardInfoActivity(currentname,currentnumber);
             }
         });
-
         cursor.close();
         return rootView;
     }
