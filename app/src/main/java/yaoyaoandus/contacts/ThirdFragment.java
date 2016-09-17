@@ -5,6 +5,7 @@ package yaoyaoandus.contacts;
  */
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,18 +35,56 @@ public  class ThirdFragment extends android.support.v4.app.Fragment {
 
     public class MyExpandableListAdapter extends BaseExpandableListAdapter {
         // Sample data set.  children[i] contains the children (String[]) for groups[i].
-        public String[] groups = { "我的名片1", "我的名片2", "我的名片3", "我的名片4" };
-        public String[][] children = {
-                { "胡算林", "张俊峰", "王志军", "二人" },
-                { "李秀婷", "蔡乔", "别高", "余音" },
+        public String[] groups; //= { "我的名片1", "我的名片2", "我的名片3", "我的名片4" };
+        public String[] groupsnum;
+        public String[][] children
+                = {
+//                { "胡算林", "张俊峰", "王志军", "二人" },
+//                { "李秀婷", "蔡乔", "别高", "余音" },
                 { "摊派新", "张爱明" },
-                { "马超", "司道光" }
-        };
+                { "马超", "司道光" }        };
         Context context;
-
         public MyExpandableListAdapter(Context c)
         {
             context=c;
+            Cursor cursor=((MainActivity)c).getdatabase().getReadableDatabase().rawQuery("select card_name,content from mycards",null);
+            groups=new String[cursor.getCount()];
+            groupsnum=new String[cursor.getCount()];
+            //children=new String[cursor.getCount()][];
+            int i=0;
+            if (cursor.moveToFirst()) {
+                do {
+                    String name = cursor.getString(cursor.getColumnIndex("card_name"));
+                    String number = cursor.getString(cursor.getColumnIndex("content"));
+                    groups[i]=name;
+                    groupsnum[i]=number;
+                    i++;
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+
+//            Cursor cursor1=((MainActivity)c).getdatabase().getReadableDatabase().rawQuery("select * from cards_sendto",null);
+//            Cursor cursor2=((MainActivity)c).getdatabase().getReadableDatabase().rawQuery("select * from cards_groups",null);
+//            i=0;
+//            if (cursor1.moveToFirst()) {
+//                do {
+//                    String name = cursor.getString(cursor1.getColumnIndex("card_name"));
+//                    String number = cursor.getString(cursor1.getColumnIndex("content"));
+//                    groups[i]=name;
+//                    i++;
+//                } while (cursor1.moveToNext());
+//            }
+//            cursor1.close();
+//
+//            if (cursor2.moveToFirst()) {
+//                do {
+//                    String name = cursor.getString(cursor2.getColumnIndex("card_name"));
+//                    String number = cursor.getString(cursor2.getColumnIndex("content"));
+//                    groups[i]=name;
+//                    i++;
+//                } while (cursor2.moveToNext());
+//            }
+//            cursor2.close();
         }
 
         @Override
@@ -95,8 +134,19 @@ public  class ThirdFragment extends android.support.v4.app.Fragment {
             //LinearLayout linearLayout=new LinearLayout(getActivity());
             ImageView logo=(ImageView) v.findViewById(R.id.image_icon_frag3);
             logo.setImageResource(R.drawable.usermain);
-            TextView textView =(TextView)v.findViewById(R.id.textview_frag3);
-            textView.setText(getGroup(groupPosition).toString());
+            TextView textView =(TextView)v.findViewById(R.id.textview_name_frag3);
+            final String name=getGroup(groupPosition).toString();
+            textView.setText(name);
+            TextView textView2 =(TextView)v.findViewById(R.id.textview_number_frag3);
+            final String number=groupsnum[groupPosition];
+            textView2.setText(number);
+            TextView textView3 =(TextView)v.findViewById(R.id.textview_openinfo_frag3);
+            textView3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((MainActivity)context).startCardInfoActivity(name,number);
+                }
+            });
             return v;
         }
 

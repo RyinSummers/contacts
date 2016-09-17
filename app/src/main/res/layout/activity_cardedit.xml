@@ -8,14 +8,7 @@
         android:layout_height="wrap_content"
         android:text="姓名"/>
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="头衔"/>
-    <EditText
+        android:id="@+id/edittext_name_cardedit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"/>
@@ -24,16 +17,19 @@
         android:layout_height="wrap_content"
         android:text="手机号码"/>
     <EditText
+        android:id="@+id/edittext_num_cardedit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"/>
     <Button
+        android:id="@+id/button_savecard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="保存"/>
     <Button
+        android:id="@+id/button_nosavecard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="删除"/>
+        android:text="取消"/>
 
 </LinearLayout>
