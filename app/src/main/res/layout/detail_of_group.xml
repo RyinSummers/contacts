@@ -1,8 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0FFFF"
+    >
+    <!--TODO：用于测试-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dip"
+        android:background="#FFFFFF"
+        >
+        <ImageButton
+            android:id="@+id/host"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_margin="5dip"
+            />
+        <ImageButton
+            android:id="@+id/member_1"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_margin="5dip"
+            />
+        <ImageButton
+            android:id="@+id/member_2"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_margin="5dip"
+            />
+        <ImageButton
+            android:id="@+id/add_member"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:src="@drawable/ic_add_48pt_3x"
+            android:layout_margin="5dip"
+            />
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="40dip"
+    android:orientation="horizontal"
+    android:background="#FFFFFF"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="群昵称"
+        android:gravity="start"
+        android:textSize="10pt"
+        />
+    <!--TODO:如何从上个页面获取群名周围加点阴影什么的-->
+    <TextView
+        android:id="@+id/group_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="10pt"
+        android:layout_alignParentRight="true"
+        android:text="显示群昵称"
+        />
+</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="群简介"
+            android:gravity="start"
+            android:textSize="10pt"
+            />
+        <!--TODO:如何从上个页面获取群名周围加点阴影什么的，长按修改-->
+        <TextView
+            android:id="@+id/detail_of_group"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:textSize="10pt"
+            android:text="显示群简介"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
 
+</LinearLayout>
 
-
+<!--TODO:如果具有群主身份的话显示为 解散该群-->
+    <Button
+        android:id="@+id/exit_group"
+        android:layout_width="350dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:text="退出该群"
+        android:background="#FF0000"
+        android:fontFamily="@string/abc_searchview_description_query"
+        android:textSize="15pt"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="100dp"
+        />
 </LinearLayout>

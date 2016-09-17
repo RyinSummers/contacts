@@ -14,7 +14,8 @@
         completions."
     </string>
     <string name="title_activity_login">LoginActivity</string>
-
+<string name="dialog_ok">确定</string>
+    <string name="dialog_no">取消</string>
     <string name="action_search">搜索</string>
     <string name="action_addnew">添加</string>
     <string name="action_settings">Settings</string>
