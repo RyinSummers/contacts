@@ -48,7 +48,6 @@
         android:inputType="text"
         android:background="@drawable/login_num_edit" />
     <!--android:background="@drawable/qqnum_edit"-->
-    <!--这个qqnum_edit是什么 图片编辑器？-->
     <!--输入框-->
     <TextView
         android:layout_width="wrap_content"

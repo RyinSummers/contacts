@@ -33,4 +33,3 @@
         android:layout_alignParentTop="true"
         android:src="@drawable/ic_group_add_18pt_2x" />
 </RelativeLayout>
-<!--TODO:要去看看定位问题了-->

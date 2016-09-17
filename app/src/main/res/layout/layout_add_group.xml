@@ -50,22 +50,27 @@
             android:id="@+id/group_type_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="群分类"
+            android:text="群简介"
             />
-        <Spinner
-            android:id="@+id/group_type"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content">
+        <!--<Spinner-->
+            <!--android:id="@+id/group_type"-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="wrap_content">-->
 
-        </Spinner>
+        <!--</Spinner>-->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
     </LinearLayout>
     <Button
         android:id="@+id/create_group"
         android:layout_width="50dp"
         android:layout_height="30dp"
-        android:text="创建"
+        android:text="创建群"
         android:textColor="#ffffff"
-        android:background="@color/material_blue_grey_800"
+        android:background="#0000ff"
         android:layout_gravity="right|bottom"
+        android:layout_marginTop="20dip"
         />
 </LinearLayout>
