@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void startCardEditActivity(String name,String number)
     {
-        Intent intent=new Intent(MainActivity.this,CardInfoActivity.class);
+        Intent intent=new Intent(MainActivity.this,CardEditActivity.class);
         intent.putExtra("name",name);
         intent.putExtra("number",number);
         startActivity(intent);

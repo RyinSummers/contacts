@@ -23,10 +23,5 @@
         android:layout_alignParentTop="true"
         ></ListView>
 
-    <Button
-        android:id="@+id/button_editnewcard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="新建名片"/>
 
 </RelativeLayout>

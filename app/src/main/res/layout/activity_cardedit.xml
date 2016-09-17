@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:text="姓名"/>
     <EditText
+        android:id="@+id/edittext_name_cardedit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"/>
@@ -16,6 +17,7 @@
         android:layout_height="wrap_content"
         android:text="手机号码"/>
     <EditText
+        android:id="@+id/edittext_num_cardedit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"/>

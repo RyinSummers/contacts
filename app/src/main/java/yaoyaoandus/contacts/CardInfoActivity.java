@@ -18,15 +18,20 @@ public class CardInfoActivity extends Activity {
         setContentView(R.layout.activity_cardinfo);
         Button opencardedit=(Button)findViewById(R.id.button_opencardedit);
         Button deletecard=(Button)findViewById(R.id.button_deletecardinfo);
-        TextView cardname=(TextView)findViewById(R.id.textview_cardinfo_name);
+        final TextView cardname=(TextView)findViewById(R.id.textview_cardinfo_name);
         TextView cardnumber=(TextView)findViewById(R.id.textview_cardinfo_number);
         Intent intent=getIntent();
-        cardname.setText(intent.getStringExtra("name"));
-        cardnumber.setText(intent.getStringExtra("number"));
+        final String name=intent.getStringExtra("name");
+        final String number=intent.getStringExtra("number");
+        cardname.setText(name);
+        cardnumber.setText(number);
         opencardedit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CardInfoActivity.this,CardEditActivity.class));
+                Intent intent=new Intent(CardInfoActivity.this,CardEditActivity.class);
+                intent.putExtra("name",name);
+                intent.putExtra("number",number);
+                startActivity(intent);
             }
         });
     }
