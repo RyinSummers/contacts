@@ -89,16 +89,16 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (id == R.id.action_addnew)
         {
-            startCardInfoActivity();
+            startCardEditActivity();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void startCardInfoActivity()
+    public void startCardEditActivity()
     {
-        startActivity(new Intent(new Intent(MainActivity.this,CardInfoActivity.class)));
+        startActivity(new Intent(new Intent(MainActivity.this,CardEditActivity.class)));
     }
 
 //    /**

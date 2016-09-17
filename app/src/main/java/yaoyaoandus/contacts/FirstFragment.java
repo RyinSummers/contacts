@@ -48,7 +48,7 @@ public  class FirstFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v)
             {
-                ((MainActivity)getActivity()).startCardInfoActivity();
+                ((MainActivity)getActivity()).startCardEditActivity();
             }
         });
 
@@ -80,7 +80,7 @@ public  class FirstFragment extends android.support.v4.app.Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((MainActivity)getActivity()).startCardInfoActivity();
+                ((MainActivity)getActivity()).startCardEditActivity();
             }
         });
 
