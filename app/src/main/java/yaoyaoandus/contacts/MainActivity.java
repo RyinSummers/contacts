@@ -1,6 +1,7 @@
 package yaoyaoandus.contacts;
 
 import android.content.Intent;
+import android.graphics.drawable.PaintDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,10 +11,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String host="";
 
     public static boolean haslogin=false;
+
+    public PopupWindow popupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +106,30 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_search) {
+        if (id == R.id.action_search)
+        {
+            final SearchView searchView = (SearchView) item.getActionView();
+            popupWindow = new PopupWindow
+                    (this.getLayoutInflater().inflate(R.layout.popup_searchresult,null),200,200);
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    String[] choice=new String[1];
+                    choice[0]=query;
+                    ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,R.layout.popup_searchresult,choice);
+                    Toast.makeText(MainActivity.this,query,Toast.LENGTH_SHORT).show();
+                    //popupWindow.setOutsideTouchable(true);
+                    popupWindow.setFocusable(true);
+                    popupWindow.setBackgroundDrawable(new PaintDrawable());
+                    popupWindow.showAsDropDown(searchView);
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    return false;
+                }
+            });
             return true;
         }
         else if (id == R.id.action_addnew)
@@ -110,6 +140,17 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+//    @Override
+//    public boolean onTouchEvent(MotionEvent motionEvent)
+//    {
+//        if(popupWindow!=null)
+//        {
+//            popupWindow.dismiss();
+//            popupWindow=null;
+//        }
+//        return super.onTouchEvent(motionEvent);
+//    }
 
     public void startCardEditActivity(String name,String number)
     {
