@@ -101,6 +101,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(new Intent(MainActivity.this,CardEditActivity.class)));
     }
 
+    public void startAdd_group()
+    {
+        startActivity(new Intent(new Intent(MainActivity.this,Add_group.class)));
+    }
+
 //    /**
 //     * A placeholder fragment containing a simple view.
 //     */
