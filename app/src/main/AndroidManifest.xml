@@ -37,12 +37,25 @@
 
         <activity
             android:name=".LoginActivity"
-            android:label="tingting's login">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".CardEditActivity"/>
+
+        <activity
+            android:name=".CardInfoActivity"/>
+
+        <activity
+            android:name=".Add_group" />
+
+        <activity
+            android:name=".Detail_of_group"
+            android:label="Detail_of_group"/>
 
     </application>
 
