@@ -43,8 +43,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:layout_margin="20dp"
     >
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="40dip"
     android:orientation="horizontal"
@@ -63,12 +64,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:textSize="10pt"
-        android:gravity="end"
+        android:layout_alignParentRight="true"
         android:text="显示群昵称"
-        android:layout_marginLeft="200dp"
         />
-</LinearLayout>
-    <LinearLayout
+</RelativeLayout>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dip"
         android:orientation="horizontal"
@@ -85,26 +85,26 @@
         <TextView
             android:id="@+id/detail_of_group"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="38dp"
             android:textSize="10pt"
-            android:gravity="end"
             android:text="显示群简介"
-            android:layout_marginLeft="200dp"
+            android:layout_alignParentRight="true"
             />
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
 
 <!--TODO:如果具有群主身份的话显示为 解散该群-->
-<Button
-    android:id="@+id/exit_group"
-    android:layout_width="350dip"
-    android:layout_height="50dip"
-    android:layout_gravity="center|bottom"
-    android:text="退出该群"
-    android:background="#FF0000"
-    android:fontFamily="@string/abc_searchview_description_query"
-    android:textSize="15pt"
-    android:textColor="#FFFFFF"
-    />
+    <Button
+        android:id="@+id/exit_group"
+        android:layout_width="350dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:text="退出该群"
+        android:background="#FF0000"
+        android:fontFamily="@string/abc_searchview_description_query"
+        android:textSize="15pt"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="100dp"
+        />
 </LinearLayout>

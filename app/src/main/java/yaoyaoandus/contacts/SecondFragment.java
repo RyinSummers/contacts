@@ -63,7 +63,6 @@ public  class SecondFragment extends android.support.v4.app.Fragment {
 
         });
 
-//        TODO:为何加了这个之后程序出问题了
 //        转到创建群组页面
         FloatingActionButton add_group=(FloatingActionButton)rootView.findViewById(R.id.add_group);
         add_group.setOnClickListener(

@@ -94,7 +94,6 @@
         android:layout_alignRight="@+id/loginNum"
         android:background="@drawable/indicator_down"
         />
-    <!--为什么又有一个账号的申请，因为删除了？-->
     <ImageButton
         android:id="@+id/delete_button_edit"
         android:layout_width="18dip"
@@ -114,7 +113,7 @@
         android:layout_marginTop="44dp"
         android:layout_marginLeft="-15dp"
         android:background="@drawable/login_button_back"
-        android:text="登陆"
+        android:text="登录"
         android:textColor="@android:color/white"
         android:layout_below="@+id/loginPassword"
         android:layout_alignStart="@+id/loginPassword" />
@@ -149,19 +148,20 @@
         android:gravity="bottom"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="|"
-        android:textSize="7pt"
-        android:gravity="bottom"
-        android:layout_below="@+id/myImage"
-        android:layout_centerHorizontal="true" />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="|"-->
+        <!--android:textSize="7pt"-->
+        <!--android:gravity="bottom"-->
+        <!--android:layout_below="@+id/myImage"-->
+        <!--android:layout_centerHorizontal="true" />-->
 
     <ListView
         android:id="@+id/loginList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
         android:layout_above="@id/regist"
         android:layout_alignLeft="@id/loginNum"
         android:layout_alignRight="@id/loginNum"
@@ -172,5 +172,15 @@
         android:divider="#aaaaaa"
         android:dividerHeight="0px"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="|"
+        android:textSize="7pt"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView5" />
 
 </RelativeLayout>
