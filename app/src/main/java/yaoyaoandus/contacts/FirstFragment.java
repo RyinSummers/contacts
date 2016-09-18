@@ -7,6 +7,7 @@ package yaoyaoandus.contacts;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ public  class FirstFragment extends android.support.v4.app.Fragment {
 //    AlphabetIndexer alphabetIndexer;
 //    static String alphabet="#ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    Button button_editnewcard;
+    FloatingActionButton button_editnewcard;
 
     public FirstFragment() { }
 
@@ -42,7 +43,7 @@ public  class FirstFragment extends android.support.v4.app.Fragment {
         View rootView = inflater.inflate(R.layout.fragment_1, container, false);
         listView = (ListView) rootView.findViewById(R.id.listview_frag1);
 
-        button_editnewcard = (Button) rootView.findViewById(R.id.button_editnewcard);
+        button_editnewcard = (FloatingActionButton) rootView.findViewById(R.id.button_editnewcard);
         button_editnewcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -96,6 +97,7 @@ public  class FirstFragment extends android.support.v4.app.Fragment {
         listView.setAdapter(simpleAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
+//            传参数
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String currentname=(String)listItems.get(position).get("name");
                 String currentnumber=(String)listItems.get(position).get("number");

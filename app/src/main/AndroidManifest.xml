@@ -58,7 +58,8 @@
         <activity
             android:name=".Detail_of_group"
             android:label="Detail_of_group"/>
-
+        <activity android:name=".Register"/>
+        <activity android:name=".selfinfo"/>
     </application>
 
 </manifest>

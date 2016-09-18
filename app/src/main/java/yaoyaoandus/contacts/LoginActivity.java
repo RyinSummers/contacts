@@ -165,13 +165,13 @@ public class LoginActivity extends Activity
         textRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginButton.setText("注册");
-                state=REGIST;
-                textRegister.setVisibility(View.GONE);
+//                loginButton.setText("注册");
+//                state=REGIST;
+//                textRegister.setVisibility(View.GONE);
+                Intent register=new Intent(LoginActivity.this,Register.class);
+                startActivity(register);
             }
         });
-
-
 
     }
 

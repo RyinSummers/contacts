@@ -25,7 +25,8 @@ public class CardEditActivity extends Activity{
         EditText editTextnum=(EditText)findViewById(R.id.edittext_num_cardedit);
         editTextname.setText(name);
         editTextnum.setText(number);
-
+//         savecard.getBackground().setAlpha(100);
+//        nosavecard.getBackground().setAlpha(100);
         savecard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
