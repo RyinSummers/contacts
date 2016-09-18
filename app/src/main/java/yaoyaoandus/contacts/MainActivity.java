@@ -1,7 +1,8 @@
 package yaoyaoandus.contacts;
 
 import android.content.Intent;
-import android.graphics.drawable.PaintDrawable;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,8 +18,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -109,18 +113,22 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_search)
         {
             final SearchView searchView = (SearchView) item.getActionView();
+            final View popView=this.getLayoutInflater().inflate(R.layout.popup_searchresult,null);
             popupWindow = new PopupWindow
-                    (this.getLayoutInflater().inflate(R.layout.popup_searchresult,null),200,200);
+                    (popView, RelativeLayout.LayoutParams.MATCH_PARENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT);
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    String[] choice=new String[1];
-                    choice[0]=query;
-                    ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,R.layout.popup_searchresult,choice);
-                    Toast.makeText(MainActivity.this,query,Toast.LENGTH_SHORT).show();
-                    //popupWindow.setOutsideTouchable(true);
+                    ArrayList<String> choice=new ArrayList<String>();
+                    choice.add(0,query);
+                    choice.add(1,"qwe");
+                    choice.add(2,"were");
+                    ListView poplistview=(ListView)popView.findViewById(R.id.listview_searchresult);
+                    ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,R.layout.popup_list_item,choice);
+                    poplistview.setAdapter(adapter);
                     popupWindow.setFocusable(true);
-                    popupWindow.setBackgroundDrawable(new PaintDrawable());
+                    popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                     popupWindow.showAsDropDown(searchView);
                     return false;
                 }
