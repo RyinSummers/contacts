@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -133,28 +136,42 @@ public class LoginActivity extends Activity
         });
 
 
+        //登陆和注册，向网络发送请求
         loginButton=(Button)findViewById(R.id.LoginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                JSONObject json_register=new JSONObject();
+                try {
+                    json_register.put("email", login_num_edit.getText().toString());
+                    json_register.put("password",login_password_edit.getText().toString());
+                    json_register.put("name","高明");
+                    json_register.put("nickname","小高同学");
+                    json_register.put("gender","male");
+                    json_register.put("picture",null);
+                    json_register.put("phone","1471228137");
+                }catch (JSONException ex) {
+                    // 键为null或使用json不支持的数字格式(NaN, infinities)
+                    throw new RuntimeException(ex);
+                }
+
                 if(state==REGIST)
                 {
-//                    HttpUtils.doPost(MainActivity.host+"/users/add",
-//                            "{" + "\"email\": \""+login_num_edit.getText()+"\"," +
-//                            "\"password\": \"\""+login_password_edit.getText()+"\"\"," +
-//                            "\"name\": \"KRfsOjGh\"," +
-//                            "\"nicename\": \"KRfsOjGh\"," +
-//                            "\"gender\": \"male\"," +
-//                            "\"picture\": \"NULL\"," +
-//                            "\"phone\": 1471228137" +
-//                            "}");
+                    //HttpUtils.doPost(MainActivity.host+"/users/add", json_register.toString());
                     state=LOGIN;
                 }
                 if(state==LOGIN)
                 {
-//                    String loginresult=HttpUtils.doPost(MainActivity.host+"/users/login",
-//                            "{\"email\": \"\""+login_num_edit.getText()
-//                                    +"\"\",\""+login_password_edit.getText()+"\": \"tsing\",}");
+                    JSONObject json_login=new JSONObject();
+                    try {
+                        json_login.put("email", login_num_edit.getText().toString());
+                        json_login.put("password", login_password_edit.getText().toString());
+                    }catch (JSONException ex)
+                    {
+                        throw  new RuntimeException(ex);
+                    }
+//                    String result=HttpUtils.doPost(MainActivity.host+"/users/login",
+//                            json_login.toString());
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     MainActivity.haslogin=true;
                     finish();
