@@ -1,6 +1,7 @@
 package yaoyaoandus.contacts;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +24,9 @@ public class Register extends Activity{
         regist.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View view) {
-                        Toast.makeText(Register.this, "用户注册", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Register.this, "用户注册", Toast.LENGTH_SHORT).show();
+                        Intent IsResister=new Intent(Register.this,MainActivity.class);
+                        startActivity(IsResister);
                     }
                 }
         );
