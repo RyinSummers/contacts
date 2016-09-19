@@ -1,49 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TableRow>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="30dp"
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="姓名:"/>
+            android:text="姓名:"
+            android:textSize="10pt"
+            />
         <TextView
             android:id="@+id/textview_cardinfo_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="10pt"
+            android:layout_marginLeft="100dp"
             android:text="王瑶"/>
+    </LinearLayout>
 
-    </TableRow>
-
-    <TableRow>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="30dp"
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="10pt"
+            android:layout_marginTop="10dp"
             android:text="电话"/>
         <TextView
             android:id="@+id/textview_cardinfo_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="10pt"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="100dp"
             android:text="17865198377"/>
-        <Button
-            android:id="@+id/button_makecall"
-            android:layout_width="wrap_content"
+    </LinearLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="250dp"
+        android:src="@drawable/ic_call_black_18dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="拨打"/>
+            >
+            <Button
+                android:id="@+id/button_opencardedit"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:textSize="10dp"
+                android:textColor="#ffffff"
+                android:layout_alignParentLeft="true"
+                android:text="修改"/>
+            <Button
+                android:id="@+id/button_deletecardinfo"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@color/colorPrimary"
+                android:textSize="10dp"
+                android:textColor="#ffffff"
+                android:text="删除"/>
+        </RelativeLayout>
 
-    </TableRow>
-    <Button
-        android:id="@+id/button_opencardedit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="修改"/>
-    <Button
-        android:id="@+id/button_deletecardinfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="删除"/>
+    </RelativeLayout>
 
-</TableLayout>
+
+</LinearLayout>
