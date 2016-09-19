@@ -19,7 +19,7 @@ public class CardEditActivity extends Activity{
         Button savecard=(Button)findViewById(R.id.button_savecard);
         Button nosavecard=(Button)findViewById(R.id.button_nosavecard);
         Intent intent=getIntent();
-        String name=intent.getStringExtra("name");
+        final String name=intent.getStringExtra("name");
         String number=intent.getStringExtra("number");
         final EditText editTextname=(EditText)findViewById(R.id.edittext_name_cardedit);
         final EditText editTextnum=(EditText)findViewById(R.id.edittext_num_cardedit);
@@ -31,7 +31,12 @@ public class CardEditActivity extends Activity{
             public void onClick(View v) {
                 String name_new=editTextname.getText().toString();
                 String num_new=editTextnum.getText().toString();
-                //new DatabaseUtils(CardEditActivity.this,"myuser.db",1).getReadableDatabase().execSQL("update cards where ");
+//                new DatabaseUtils(CardEditActivity.this,"myuser.db",1).getReadableDatabase()
+//                .execSQL("update cards set DNAME= where DNAME  ");
+                Intent intent1=new Intent();
+                intent1.putExtra("name",name_new);
+                intent1.putExtra("number",num_new);
+                setResult(RESULT_OK,intent1);
                 finish();
             }
         });

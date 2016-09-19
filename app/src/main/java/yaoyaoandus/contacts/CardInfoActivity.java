@@ -13,14 +13,17 @@ import android.widget.TextView;
  */
 public class CardInfoActivity extends Activity {
 
+    TextView cardname;
+    TextView cardnumber;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cardinfo);
         Button opencardedit=(Button)findViewById(R.id.button_opencardedit);
         Button deletecard=(Button)findViewById(R.id.button_deletecardinfo);
-        final TextView cardname=(TextView)findViewById(R.id.textview_cardinfo_name);
-        TextView cardnumber=(TextView)findViewById(R.id.textview_cardinfo_number);
+        cardname=(TextView)findViewById(R.id.textview_cardinfo_name);
+        cardnumber=(TextView)findViewById(R.id.textview_cardinfo_number);
         Intent intent=getIntent();
         final String name=intent.getStringExtra("name");
         final String number=intent.getStringExtra("number");
@@ -32,7 +35,7 @@ public class CardInfoActivity extends Activity {
                 Intent intent=new Intent(CardInfoActivity.this,CardEditActivity.class);
                 intent.putExtra("name",name);
                 intent.putExtra("number",number);
-                startActivity(intent);
+                startActivityForResult(intent,1);
             }
         });
         Button button_call=(Button)findViewById(R.id.button_makecall);
@@ -43,5 +46,21 @@ public class CardInfoActivity extends Activity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    String newname = data.getStringExtra("name");
+                    String newnumber= data.getStringExtra("number");
+                    cardname.setText(newname);
+                    cardnumber.setText(newnumber);
+                }
+                break;
+            default:
+        }
     }
 }
