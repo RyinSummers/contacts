@@ -14,13 +14,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
-    public static final String host="http://121.250.217.61/";
+    //public static final String host="http://121.250.217.61";
 
     public static boolean haslogin=false;
 
@@ -113,29 +114,33 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search)
         {
-            final SearchView searchView = (SearchView) item.getActionView();
+            //final SearchView searchView = (SearchView) item.getActionView();
             final View popView=this.getLayoutInflater().inflate(R.layout.popup_searchresult,null);
             popupWindow = new PopupWindow
-                    (popView, RelativeLayout.LayoutParams.MATCH_PARENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    (popView, LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT);
+            popupWindow.setFocusable(true);
+            popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+            popupWindow.showAtLocation(findViewById(R.id.toolbar), Gravity.NO_GRAVITY,0,0);
+
+            ArrayList<String> choice=new ArrayList<String>();
+            choice.add(0,"a");
+            choice.add(1,"qwe");
+            choice.add(2,"were");
+            final ListView poplistview=(ListView)popView.findViewById(R.id.listview_searchresult);
+            final ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,R.layout.popup_list_item,choice);
+            poplistview.setAdapter(adapter);
+            poplistview.setTextFilterEnabled(true);
+            SearchView searchView=(SearchView) popView.findViewById(R.id.search_view);
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    ArrayList<String> choice=new ArrayList<String>();
-                    choice.add(0,query);
-                    choice.add(1,"qwe");
-                    choice.add(2,"were");
-                    ListView poplistview=(ListView)popView.findViewById(R.id.listview_searchresult);
-                    ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,R.layout.popup_list_item,choice);
-                    poplistview.setAdapter(adapter);
-                    popupWindow.setFocusable(true);
-                    popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-                    popupWindow.showAsDropDown(searchView);
                     return false;
                 }
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
+                    adapter.getFilter().filter(newText);
                     return false;
                 }
             });

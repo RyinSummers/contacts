@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseUtils extends SQLiteOpenHelper{
 
-    //1登陆用户账号，users(用户ID，用户名,密码,昵称,头像,电话,邮箱)
+    //1登陆用户账号，users(用户ID,用户名,密码,昵称,头像,电话,邮箱)
     final static String create_users="CREATE TABLE users (" +
             "  id INT,\n" +
             "  name VARCHAR(20),\n" +
@@ -21,7 +21,7 @@ public class DatabaseUtils extends SQLiteOpenHelper{
             "  PRIMARY KEY (id)\n" +
             ");";
 
-    //2我受到的名片cards_received(卡ID，用户ID，用户名，卡信息）
+    //2我收到的名片cards_received(卡ID，用户ID，用户名，卡信息）
     final static String create_cards_received="CREATE TABLE cards_received (\n" +
             "  card_id INT,\n" +
             "  user_id INT,\n" +

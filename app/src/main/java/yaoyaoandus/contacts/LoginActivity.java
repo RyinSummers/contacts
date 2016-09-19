@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,13 +18,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 /**
  * Created by lenovo on 2016/8/6.
  */
@@ -46,6 +48,39 @@ public class LoginActivity extends Activity
     final int LOGIN=0;
     final int REGIST=1;
     int state=LOGIN;
+    private android.os.Handler handler=new Handler(){
+        //处理消息的
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+
+                case LOGIN:
+                    Toast.makeText(LoginActivity.this,(String)msg.obj,Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    MainActivity.haslogin=true;
+                    finish();
+//                case MSG_CACHE_PIC:
+//                    //3.处理消息 运行在主线程
+//                    Bitmap bitmap = (Bitmap) msg.obj;
+//                    mIvShow.setImageBitmap(bitmap);
+//                    System.out.println("(不用下载)缓存图片");
+//                    break;
+//                case MSG_NEW_PIC:
+//                    Bitmap bitmap2 = (Bitmap) msg.obj;
+//                    mIvShow.setImageBitmap(bitmap2);
+//                    System.out.println("新下载(还没有缓存)下载的图片");
+//                    break;
+//                case ERROR:
+//                    Toast.makeText(MainActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+//                    break;
+//                case EXCEPTION:
+//                    Toast.makeText(MainActivity.this, "发生异常，请求失败", Toast.LENGTH_SHORT).show();
+//                    break;
+            }
+
+            super.handleMessage(msg);
+        }
+    };
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -141,7 +176,7 @@ public class LoginActivity extends Activity
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JSONObject json_register=new JSONObject();
+                final JSONObject json_register=new JSONObject();
                 try {
                     json_register.put("email", login_num_edit.getText().toString());
                     json_register.put("password",login_password_edit.getText().toString());
@@ -157,24 +192,36 @@ public class LoginActivity extends Activity
 
                 if(state==REGIST)
                 {
-                    //HttpUtils.doPost(MainActivity.host+"/users/add", json_register.toString());
+//                    new Thread(){
+//                        public void run() {
+//                            HttpUtils.doPost(MainActivity.host+"/users/add", json_register.toString());
+//                        }
+//                    }.start();
                     state=LOGIN;
                 }
-                if(state==LOGIN)
+                else if(state==LOGIN)
                 {
-                    JSONObject json_login=new JSONObject();
+                    final JSONObject json_login=new JSONObject();
                     try {
-                        json_login.put("email", login_num_edit.getText().toString());
-                        json_login.put("password", login_password_edit.getText().toString());
+//                        json_login.put("email", login_num_edit.getText().toString());
+//                        json_login.put("password", login_password_edit.getText().toString());
+                        json_login.put("email", "tsing.coder@gmail.com");
+                        json_login.put("password", "tsing");
                     }catch (JSONException ex)
                     {
                         throw  new RuntimeException(ex);
                     }
-//                    String result=HttpUtils.doPost(MainActivity.host+"/users/login",
-//                            json_login.toString());
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    MainActivity.haslogin=true;
-                    finish();
+                    new Thread(){
+                        public void run() {
+//                            HttpUtils.doPost(MainActivity.host+"/users/login", json_login.toString());
+                            //String result=HttpUtils.doPost(MainActivity.host+"/users/login", json_login.toString());
+                            //HttpUtils.post("users/login",json_login,);
+                            Message msg = new Message();
+                            //msg.obj=result;
+                            msg.what=LOGIN;
+                            handler.sendMessage(msg);
+                        }
+                    }.start();
                 }
             }
         });

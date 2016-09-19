@@ -21,14 +21,17 @@ public class CardEditActivity extends Activity{
         Intent intent=getIntent();
         String name=intent.getStringExtra("name");
         String number=intent.getStringExtra("number");
-        EditText editTextname=(EditText)findViewById(R.id.edittext_name_cardedit);
-        EditText editTextnum=(EditText)findViewById(R.id.edittext_num_cardedit);
+        final EditText editTextname=(EditText)findViewById(R.id.edittext_name_cardedit);
+        final EditText editTextnum=(EditText)findViewById(R.id.edittext_num_cardedit);
         editTextname.setText(name);
         editTextnum.setText(number);
 
         savecard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String name_new=editTextname.getText().toString();
+                String num_new=editTextnum.getText().toString();
+                //new DatabaseUtils(CardEditActivity.this,"myuser.db",1).getReadableDatabase().execSQL("update cards where ");
                 finish();
             }
         });
