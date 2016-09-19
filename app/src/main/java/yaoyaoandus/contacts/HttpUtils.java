@@ -4,9 +4,6 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import org.apache.http.Header;
-import org.json.JSONObject;
-
 /**
  * Created by LJY on 16/9/16.
  */
@@ -23,10 +20,10 @@ public class HttpUtils
     public static void post(String url, RequestParams params, JsonHttpResponseHandler responseHandler) {
         //client.post(getAbsoluteUrl(url), params, responseHandler);
         client.post(getAbsoluteUrl(url), params,new JsonHttpResponseHandler(){
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                // If the response is JSONObject instead of expected JSONArray
-            }
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                // If the response is JSONObject instead of expected JSONArray
+//            }
 
 //            @Override
 //            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {

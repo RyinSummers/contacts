@@ -25,10 +25,16 @@
 
     </ListView>
 
-    <Button
+    <!--<Button-->
+        <!--android:id="@+id/button_editnewcard"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="新建名片"/>-->
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/button_editnewcard"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="新建名片"/>
-
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_fiber_new_18pt_2x" />
 </RelativeLayout>

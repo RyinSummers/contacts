@@ -4,32 +4,58 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:textColor="@color/colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="姓名"/>
+        android:textSize="10pt"
+        android:fontFeatureSettings=""
+        android:text="姓名"
+        android:layout_marginLeft="10dp"
+        />
     <EditText
         android:id="@+id/edittext_name_cardedit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"/>
     <TextView
+        android:textColor="@color/colorAccent"
+        android:textSize="10pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:text="手机号码"/>
     <EditText
         android:id="@+id/edittext_num_cardedit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"/>
-    <Button
-        android:id="@+id/button_savecard"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="保存"/>
-    <Button
-        android:id="@+id/button_nosavecard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="取消"/>
+        android:layout_margin="10dp"
+        >
+        <Button
+            android:id="@+id/button_savecard"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:textSize="12pt"
+            android:alpha="100"
+            android:layout_alignParentLeft="true"
+            android:text="保    存"
+            />
+        <Button
+            android:id="@+id/button_nosavecard"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentRight="true"
+            android:alpha="100"
+            android:textColor="#ffffff"
+            android:textSize="12pt"
+            android:text="取   消"/>
+
+    </RelativeLayout>
 
 </LinearLayout>
