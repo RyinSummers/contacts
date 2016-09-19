@@ -38,11 +38,9 @@ public  class ThirdFragment extends android.support.v4.app.Fragment {
         public String[] groups; //= { "我的名片1", "我的名片2", "我的名片3", "我的名片4" };
         public String[] groupsnum;
         public String[][] children
-                = {
-//                { "胡算林", "张俊峰", "王志军", "二人" },
-//                { "李秀婷", "蔡乔", "别高", "余音" },
-                { "摊派新", "张爱明" },
-                { "马超", "司道光" }        };
+                = {{"陈立", "郭经理","我的大学[群]"},
+                {"林新", "许晶晶", "余姚"}};
+
         Context context;
         public MyExpandableListAdapter(Context c)
         {
@@ -106,6 +104,7 @@ public  class ThirdFragment extends android.support.v4.app.Fragment {
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
                                  View convertView, ViewGroup parent) {
             TextView textView = new TextView(getActivity());
+            textView.setTextSize(20);
             textView.setText(getChild(groupPosition, childPosition).toString());
             return textView;
         }
@@ -133,7 +132,7 @@ public  class ThirdFragment extends android.support.v4.app.Fragment {
             View v = layoutInflater.inflate(R.layout.frag3_list_item,parent,false);
             //LinearLayout linearLayout=new LinearLayout(getActivity());
             ImageView logo=(ImageView) v.findViewById(R.id.image_icon_frag3);
-            logo.setImageResource(R.drawable.defaultheader);
+            logo.setImageResource(R.drawable.header6);
             TextView textView =(TextView)v.findViewById(R.id.textview_name_frag3);
             final String name=getGroup(groupPosition).toString();
             textView.setText(name);

@@ -137,7 +137,7 @@ public  class FirstFragment extends android.support.v4.app.Fragment {
         temp1.put("name", name);
         temp1.put("number", number);
         listItems.add(temp1);
-        simpleAdapter.notifyDataSetChanged();
+        ((SimpleAdapter)listView.getAdapter()).notifyDataSetChanged();
     }
 
     public class IndexedSimpleAdapter extends SimpleAdapter

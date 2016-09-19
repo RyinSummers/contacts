@@ -135,7 +135,7 @@ public class DatabaseUtils extends SQLiteOpenHelper{
         db.execSQL("insert into cards_sendto values " +
                 "(2,6,'许晶晶')");
         db.execSQL("insert into cards_sendto values " +
-                "(2,7,'张起灵')");
+                "(2,7,'余姚')");
         //7我的名片发给了哪些群cards_groups(卡片ID，群ID，群名字)
         db.execSQL("insert into cards_groups values " +
                 "(1,1,'小学同学')");

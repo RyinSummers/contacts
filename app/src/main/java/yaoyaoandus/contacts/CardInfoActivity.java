@@ -70,7 +70,7 @@ public class CardInfoActivity extends Activity {
         button_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+number.toString().trim()));
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+cardnumber.getText().toString().trim()));
                 startActivity(intent);
             }
         });

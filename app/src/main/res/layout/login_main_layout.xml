@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
+        android:text="Contacts——即时通讯录：保持联络！"
         android:layout_margin="20dp"
         android:id="@+id/textView" />
     <!--//设置圆角，配置背景，想想如何利用这个方法给EditText设置边框，为ListView的每一个Item设置边框-->
@@ -70,7 +70,7 @@
         android:layout_marginLeft="40dip"
         android:layout_marginRight="30dip"
         android:hint="密码"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:layout_below="@+id/loginNum"
         android:background="@drawable/login_num_edit"
         android:layout_marginTop="20dp"
