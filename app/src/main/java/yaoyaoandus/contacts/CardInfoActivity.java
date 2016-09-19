@@ -1,9 +1,11 @@
 package yaoyaoandus.contacts;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,6 +40,31 @@ public class CardInfoActivity extends Activity {
                 startActivityForResult(intent,1);
             }
         });
+        deletecard.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialog.Builder IsDelete=new AlertDialog.Builder(CardInfoActivity.this);
+                        IsDelete.setTitle("删除");
+                        IsDelete.setMessage("是否确认删除？");
+                        IsDelete.setCancelable(false);
+                        IsDelete.setPositiveButton(R.string.dialog_ok,new DialogInterface.OnClickListener()
+                                {
+                                    public void onClick(DialogInterface dialog,int witch){
+
+                                    }
+                                }
+                        );
+                        IsDelete.setNegativeButton(R.string.dialog_no,new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog,int witch){
+                                dialog.dismiss();
+                            }
+                        });
+                        IsDelete.show();
+                    }
+                }
+        );
+
         Button button_call=(Button)findViewById(R.id.button_makecall);
         button_call.setOnClickListener(new View.OnClickListener() {
             @Override
