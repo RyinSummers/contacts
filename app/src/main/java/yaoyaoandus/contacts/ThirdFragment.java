@@ -133,7 +133,7 @@ public  class ThirdFragment extends android.support.v4.app.Fragment {
             View v = layoutInflater.inflate(R.layout.frag3_list_item,parent,false);
             //LinearLayout linearLayout=new LinearLayout(getActivity());
             ImageView logo=(ImageView) v.findViewById(R.id.image_icon_frag3);
-            logo.setImageResource(R.drawable.usermain);
+            logo.setImageResource(R.drawable.defaultheader);
             TextView textView =(TextView)v.findViewById(R.id.textview_name_frag3);
             final String name=getGroup(groupPosition).toString();
             textView.setText(name);

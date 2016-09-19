@@ -18,7 +18,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,7 +54,7 @@ public class LoginActivity extends Activity
             switch (msg.what) {
 
                 case LOGIN:
-                    Toast.makeText(LoginActivity.this,(String)msg.obj,Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LoginActivity.this,(String)msg.obj,Toast.LENGTH_LONG).show();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     MainActivity.haslogin=true;
                     finish();
@@ -110,7 +109,7 @@ public class LoginActivity extends Activity
            deleteButtonOfEdit.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
-                  currentUserImage.setImageResource(R.drawable.usermain);//这张图片应该是空吧
+                  currentUserImage.setImageResource(R.drawable.defaultheader);//这张图片应该是空吧
                    login_num_edit.setText("");//把账号置空
                    currentSelectedPosition=-1;
                    deleteButtonOfEdit.setVisibility(View.GONE);
@@ -126,7 +125,7 @@ public class LoginActivity extends Activity
 
 
         if(currentSelectedPosition==-1){
-            currentUserImage.setImageResource(R.drawable.usermain);//usermain应该是空白图片
+            currentUserImage.setImageResource(R.drawable.defaultheader);//usermain应该是空白图片
             login_num_edit.setText("");
         }
         else {
@@ -234,6 +233,7 @@ public class LoginActivity extends Activity
 		//                textRegister.setVisibility(View.GONE);
 		                Intent register=new Intent(LoginActivity.this,Register.class);
 		                startActivity(register);
+                        finish();
 		            }
 		        });
 
@@ -342,7 +342,7 @@ public class LoginActivity extends Activity
             public void onClick(View arg0){
                 list.remove(position);
                 if (position==currentSelectedPosition){
-                    currentUserImage.setImageResource(R.drawable.usermain);
+                    currentUserImage.setImageResource(R.drawable.defaultheader);
                     login_num_edit.setText("");
                     currentSelectedPosition=-1;
                 }

@@ -14,7 +14,7 @@ public class DatabaseUtils extends SQLiteOpenHelper{
             "  id INT,\n" +
             "  name VARCHAR(20),\n" +
             "  password VARCHAR(20) ,\n" +
-            "  nicename VARCHAR(20) ,\n" +
+            "  nickname VARCHAR(20) ,\n" +
             "  picture VARCHAR(20) ,\n" +
             "  phone VARCHAR(16) ,\n" +
             "  email VARCHAR(20) ,\n" +
@@ -111,7 +111,7 @@ public class DatabaseUtils extends SQLiteOpenHelper{
         db.execSQL("insert into cards_received values " +
                 "(7,6,'许晶晶','16327271856')");
         db.execSQL("insert into cards_received values " +
-                "(8,7,'张起灵','82221710')");
+                "(8,7,'余姚','82221710')");
         //3我的名片mycards（卡ID,卡名字，content）
         db.execSQL("insert into mycards values " +
                 "(1,'高明','13688888789')");

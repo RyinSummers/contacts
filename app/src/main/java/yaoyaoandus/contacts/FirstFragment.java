@@ -75,7 +75,7 @@ public  class FirstFragment extends android.support.v4.app.Fragment {
                     String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                     String number = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                     //String sortkey = cursor.getString(0);
-                    temp1.put("header",R.drawable.usermain);
+                    temp1.put("header",R.drawable.defaultheader);
                     temp1.put("name",name);
                     temp1.put("number", number);
                     listItems.add(temp1);
@@ -84,24 +84,30 @@ public  class FirstFragment extends android.support.v4.app.Fragment {
             }
         }
         //else if(((MainActivity)getActivity()).phone_import==false){
-            DatabaseUtils databaseUtils = ((MainActivity) getActivity()).getdatabase();
-            cursor = ((MainActivity) getActivity()).getdatabase().getReadableDatabase().rawQuery("select card_id,user_name,content from cards_received", null);
-            if (cursor.moveToFirst()) {
-                do {
-                    int card_id = cursor.getInt(cursor.getColumnIndex("card_id"));
-                    String name = cursor.getString(cursor.getColumnIndex("user_name"));
-                    String number = cursor.getString(cursor.getColumnIndex("content"));
-                    //String sortkey = cursor.getString(0);
-                    temp1.put("header", R.drawable.usermain);
-                    temp1.put("name", name);
-                    temp1.put("number", number);
-                    temp1.put("cardid", card_id);
-                    listItems.add(temp1);
-                    temp1 = new HashMap<String, Object>();
-                } while (cursor.moveToNext());
-            }
+        int i=0;
+        DatabaseUtils databaseUtils = ((MainActivity) getActivity()).getdatabase();
+        cursor = ((MainActivity) getActivity()).getdatabase().getReadableDatabase().rawQuery("select card_id,user_name,content from cards_received", null);
+        if (cursor.moveToFirst()) {
+            do {
+                i++;
+                int card_id = cursor.getInt(cursor.getColumnIndex("card_id"));
+                String name = cursor.getString(cursor.getColumnIndex("user_name"));
+                String number = cursor.getString(cursor.getColumnIndex("content"));
+                //String sortkey = cursor.getString(0);
+                if(i==2)
+                    temp1.put("header", R.drawable.header2);
+                else if(i==5)
+                    temp1.put("header", R.drawable.header3);
+                else
+                    temp1.put("header", R.drawable.defaultheader);
+                temp1.put("name", name);
+                temp1.put("number", number);
+                temp1.put("cardid", card_id);
+                listItems.add(temp1);
+                temp1 = new HashMap<String, Object>();
+            } while (cursor.moveToNext());
+        }
         //}
-
         simpleAdapter=new IndexedSimpleAdapter(getActivity(),listItems,R.layout.frag1_list_item,
                 new String[]{"header","name","number"},
                 new int[]{R.id.image_icon_frag1,R.id.name_frag1,R.id.number_frag1});
@@ -123,6 +129,15 @@ public  class FirstFragment extends android.support.v4.app.Fragment {
     {
         super.onCreate(savedInstanceState);
 
+    }
+
+    public void addCard(String name,String number)
+    {
+        Map<String, Object> temp1 = new HashMap<String, Object>();
+        temp1.put("name", name);
+        temp1.put("number", number);
+        listItems.add(temp1);
+        simpleAdapter.notifyDataSetChanged();
     }
 
     public class IndexedSimpleAdapter extends SimpleAdapter

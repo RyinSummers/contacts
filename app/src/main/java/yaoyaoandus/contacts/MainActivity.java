@@ -21,10 +21,12 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -181,31 +183,81 @@ public class MainActivity extends AppCompatActivity {
             popupWindow.showAtLocation(findViewById(R.id.toolbar), Gravity.NO_GRAVITY,0,0);
 
             ArrayList<String> choice=new ArrayList<String>();
-            choice.add(0,"a");
-            choice.add(1,"qwe");
-            choice.add(2,"were");
+            choice.add(0,"baba_changjinlu");
+            choice.add(1,"18029393201");
+            choice.add(2,"iamswing");
+            choice.add(3,"code_me_find_me");
+            choice.add(4,"582310224");
+            choice.add(5,"givemefive");
+            choice.add(6,"ljq_fjfz");
+            choice.add(7,"zhangxinyu");
+            choice.add(8,"copy_keaidekexin");
+            choice.add(9,"xuanzhiqian_best");
+            choice.add(10,"223397960@163.com");
+            choice.add(11,"shuangxuewei8881");
+            choice.add(12,"chenxin1996");
+            choice.add(13,"tsingtan_developer");
+            choice.add(14,"jinanhefeng5");
+            choice.add(15,"iqiyi_notofficial");
+            choice.add(16,"lovelive8nozomi");
+            choice.add(17,"kehuilan_shandong");
             final ListView poplistview=(ListView)popView.findViewById(R.id.listview_searchresult);
             final ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,R.layout.popup_list_item,choice);
             poplistview.setAdapter(adapter);
             poplistview.setTextFilterEnabled(true);
+            //poplistview.setVisibility(View.INVISIBLE);
+            adapter.getFilter().filter("abcdefghijklmnopqrstuvwxyz");
             SearchView searchView=(SearchView) popView.findViewById(R.id.search_view);
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
+                    final String s=query;
+                    new Thread(){
+                        public void run(){
+                            try {
+                                Thread.sleep(1500);
+                                adapter.getFilter().filter(s);
+                            }catch(Exception e){}
+                        }
+                    }.start();
+
                     return false;
                 }
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    adapter.getFilter().filter(newText);
                     return false;
+                }
+            });
+            poplistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                    dialog.setMessage("是否发送索要名片请求？");
+                    dialog.setCancelable(true);
+                    dialog.setPositiveButton("确定", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            Toast.makeText(MainActivity.this, "请求已发送，耐心等待对方回应", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    dialog.setNegativeButton("取消",new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {}
+                    });
+                    dialog.show();
                 }
             });
             return true;
         }
         else if (id == R.id.action_addnew)
         {
-            startCardEditActivity("","");
+            Intent intent=new Intent(MainActivity.this,CardEditActivity.class);
+            intent.putExtra("name","");
+            intent.putExtra("number","");
+            startActivityForResult(intent,2);
             return true;
         }
 
@@ -250,6 +302,20 @@ public class MainActivity extends AppCompatActivity {
         return dbhelp;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        switch (requestCode) {
+            case 2:
+                if (resultCode == RESULT_OK) {
+                    String newname = data.getStringExtra("name");
+                    String newnumber= data.getStringExtra("number");
+                    ((FirstFragment)(mSectionsPagerAdapter.getItem(0))).addCard(newname,newnumber);
+                }
+                break;
+            default:
+        }
+    }
 //    /**
 //     * A placeholder fragment containing a simple view.
 //     */
