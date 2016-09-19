@@ -4,34 +4,29 @@ package yaoyaoandus.contacts;
  * Created by LJY on 16/8/10.
  */
 
-import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.StringBuilderPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.app.Activity;
-import android.content.Context;
-import android.widget.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
-      * A placeholder fragment containing a simple view.
-      */
+ * A placeholder fragment containing a simple view.
+ */
 public  class SecondFragment extends android.support.v4.app.Fragment {
-        ListView list;
-        ArrayAdapter<String> listAdapter;
+    ListView list;
+    ArrayAdapter<String> listAdapter;
 
     public SecondFragment() {
 
     }
-//TODO:1.为创建群组设置监听 2.如何设置长按进入群详情界面
+    //TODO:1.为创建群组设置监听 2.如何设置长按进入群详情界面
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -40,14 +35,20 @@ public  class SecondFragment extends android.support.v4.app.Fragment {
         View rootView = inflater.inflate(R.layout.fragment_2, container, false);
 //        TextView textView = (TextView) rootView.findViewById(R.id.textview_frag2);
 //        textView.setText("我是群");
-       list=(ListView) rootView.findViewById(R.id.listview_frag2);
+        list=(ListView) rootView.findViewById(R.id.listview_frag2);
         listAdapter=new CustomListAdapter(this.getActivity(),R.layout.frag2_list_item);
 //TODO:这儿应该读取到数据库，数组只是为了测试,然后还需要加上名片长按的地方
-        for(int i=0;i<20;i++)
-            listAdapter.add("群"+i);
+//        for(int i=0;i<20;i++)
+//            listAdapter.add("群"+i);
+        listAdapter.add("春田花花幼儿园");
+        listAdapter.add("山东人民是一家");
+        listAdapter.add("我的大学");
+        listAdapter.add("我们这一大家子");
+        listAdapter.add("共同进步");
         list.setAdapter(listAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+
                 View toolbar = view.findViewById(R.id.toolbar);
                 ExpandAnimation expandAni = new ExpandAnimation(toolbar, 500);
                 toolbar.startAnimation(expandAni);
@@ -86,6 +87,7 @@ public  class SecondFragment extends android.support.v4.app.Fragment {
 
             if (convertView == null) {
                 convertView =getActivity().getLayoutInflater().inflate(R.layout.frag2_list_item, null);
+
             }
 
             ((TextView)convertView.findViewById(R.id.title)).setText(getItem(position));
@@ -98,4 +100,4 @@ public  class SecondFragment extends android.support.v4.app.Fragment {
             return convertView;
         }
     }
-    }
+}

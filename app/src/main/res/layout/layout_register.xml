@@ -5,14 +5,15 @@
     android:layout_height="match_parent"
     android:background="#dde1ee"
     >
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="注册账号"
-    android:textColor="@color/colorPrimary"
-    android:layout_margin="5dp"
-    android:textSize="10pt"
-    />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="注册账号"
+        android:textColor="@color/colorPrimary"
+        android:layout_margin="5dp"
+        android:textSize="10pt"
+        android:gravity="center"
+        />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,8 +30,8 @@
             />
         <ImageView
             android:id="@+id/regist_img"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:background="#ffffff"
             />
@@ -113,6 +114,7 @@
             android:text="密码"
             android:textColor="@color/colorAccent"
             android:textSize="10pt"
+            android:layout_margin="5dp"
             />
         <EditText
             android:id="@+id/regist_code"
