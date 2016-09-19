@@ -89,14 +89,14 @@ public class MainActivity extends AppCompatActivity {
                 tabLayout.setupWithViewPager(mViewPager);
 
                 //圆形悬浮按钮
-                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-                fab.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                    }
-                });
+//                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//                fab.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                                .setAction("Action", null).show();
+//                    }
+//                });
             }
         });
         dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -126,14 +126,15 @@ public class MainActivity extends AppCompatActivity {
                 tabLayout.setupWithViewPager(mViewPager);
 
                 //圆形悬浮按钮
-                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-                fab.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                    }
-                });
+//                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//                fab.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                                .setAction("Action", null).show();
+//                    }
+//                }
+//                );
             }
         });
         dialog.show();

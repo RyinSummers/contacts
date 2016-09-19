@@ -9,10 +9,10 @@
     android:orientation="vertical"
     tools:context="yaoyaoandus.contacts.FirstFragment">
 <!--TODO：最好能把基本的公共通讯录读进去-->
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="公共通讯录"/>
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="公共通讯录"/>-->
 
     <!--<Button-->
         <!--android:layout_width="match_parent"-->

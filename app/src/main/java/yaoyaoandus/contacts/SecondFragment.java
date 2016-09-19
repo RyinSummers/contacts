@@ -43,11 +43,17 @@ public  class SecondFragment extends android.support.v4.app.Fragment {
        list=(ListView) rootView.findViewById(R.id.listview_frag2);
         listAdapter=new CustomListAdapter(this.getActivity(),R.layout.frag2_list_item);
 //TODO:这儿应该读取到数据库，数组只是为了测试,然后还需要加上名片长按的地方
-        for(int i=0;i<20;i++)
-            listAdapter.add("群"+i);
+//        for(int i=0;i<20;i++)
+//            listAdapter.add("群"+i);
+        listAdapter.add("春田花花幼儿园");
+        listAdapter.add("山东人民是一家");
+        listAdapter.add("我的大学");
+        listAdapter.add("我们这一大家子");
+        listAdapter.add("共同进步");
         list.setAdapter(listAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+
                 View toolbar = view.findViewById(R.id.toolbar);
                 ExpandAnimation expandAni = new ExpandAnimation(toolbar, 500);
                 toolbar.startAnimation(expandAni);
@@ -86,6 +92,7 @@ public  class SecondFragment extends android.support.v4.app.Fragment {
 
             if (convertView == null) {
                 convertView =getActivity().getLayoutInflater().inflate(R.layout.frag2_list_item, null);
+
             }
 
             ((TextView)convertView.findViewById(R.id.title)).setText(getItem(position));
